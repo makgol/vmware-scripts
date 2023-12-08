@@ -1,0 +1,8 @@
+##### Change all vNICs with an export version other than 1000 to 1000.
+for i in `vsipioctl getfilters | grep "Filter Name" | grep "sfw.2" | awk -F' ' '{print $4}'`; do current=$(vsipioctl getexportversion -f  $i | awk -F' ' '{print $4}'); if [ $current != 1000 ]; then echo $i : Current Version is $current; vsipioctl setexportversion -f $i -e 1000; echo Done; fi; done
+ 
+##### Display the vNICs current version which with an export version other than 1000.
+for i in `vsipioctl getfilters | grep "Filter Name" | grep "sfw.2" | awk -F' ' '{print $4}'`; do current=$(vsipioctl getexportversion -f  $i | awk -F' ' '{print $4}'); if [ $current != 1000 ]; then echo $i : Current Version is $current; fi; done
+ 
+##### Display the export version for all vNICs.
+for i in `vsipioctl getfilters | grep "Filter Name" | grep "sfw.2" | awk -F' ' '{print $4}'`; do current=$(vsipioctl getexportversion -f  $i | awk -F' ' '{print $4}'); echo $i : Current Version is $current; done
