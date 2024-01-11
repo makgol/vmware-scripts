@@ -1,1 +1,1 @@
-# vmware-v2t-scripts
+# vmware-scripts
